@@ -3,7 +3,7 @@ let isEditMode = false;
 // Fetch and display students
 async function fetchStudents() {
   try {
-    const response = await fetch('http://localhost:3000/etudiants');
+    const response = await fetch('https://etud.onrender.com/etudiants');
     const students = await response.json();
     renderStudents(students);
   } catch (error) {
@@ -52,13 +52,13 @@ document.getElementById('student-form').addEventListener('submit', async (e) => 
   try {
     if (isEditMode) {
       const id = document.getElementById('student-id').value;
-      await fetch(`http://localhost:3000/etudiants/${id}`, {
+      await fetch(`https://etud.onrender.com/etudiants/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(studentData)
       });
     } else {
-      await fetch('http://localhost:3000/etudiants', {
+      await fetch('https://etud.onrender.com/etudiants', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(studentData)
@@ -75,7 +75,7 @@ document.getElementById('student-form').addEventListener('submit', async (e) => 
 // Edit student
 async function editStudent(id) {
   try {
-    const response = await fetch(`http://localhost:3000/etudiants/${id}`);
+    const response = await fetch(`https://etud.onrender.com/etudiants/${id}`);
     const student = await response.json();
     
     document.getElementById('student-id').value = student.idEtud;
@@ -96,7 +96,7 @@ async function editStudent(id) {
 async function deleteStudent(id) {
   if (confirm("Êtes-vous sûr de vouloir supprimer cet étudiant ?")) {
     try {
-      await fetch(`http://localhost:3000/etudiants/${id}`, {
+      await fetch(`https://etud.onrender.com/etudiants/${id}`, {
         method: 'DELETE'
       });
       fetchStudents();
@@ -115,7 +115,7 @@ function resetForm() {
 // Fetch filières and populate dropdown
 async function populateFilieresDropdown() {
   try {
-    const response = await fetch('http://localhost:3000/filieres');
+    const response = await fetch('https://etud.onrender.com/filieres');
     const filieres = await response.json();
     const dropdown = document.getElementById('idFil');
     

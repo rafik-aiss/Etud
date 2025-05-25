@@ -1,7 +1,7 @@
 // Fetch students with grades
 async function fetchStudentsWithGrades() {
   try {
-    const response = await fetch('http://localhost:3000/etudiants');
+    const response = await fetch('https://etud.onrender.com/etudiants');
     const students = await response.json();
     renderStudents(students);
   } catch (error) {
@@ -35,13 +35,13 @@ function renderStudents(students) {
 async function showStudentDetails(studentId) {
   try {
     console.log("Fetching student details for ID:", studentId);
-    const studentResponse = await fetch(`http://localhost:3000/etudiants/${studentId}`);
+    const studentResponse = await fetch(`https://etud.onrender.com/etudiants/${studentId}`);
     if (!studentResponse.ok) throw new Error("Student not found");
     const student = await studentResponse.json();
     console.log("Student data:", student);
 
     console.log("Fetching grades for student ID:", studentId);
-    const gradesResponse = await fetch(`http://localhost:3000/etudiants/${studentId}/grades`);
+    const gradesResponse = await fetch(`https://etud.onrender.com/etudiants/${studentId}/grades`);
     if (!gradesResponse.ok) throw new Error("Grades not found");
     const grades = await gradesResponse.json();
     console.log("Grades data:", grades);
