@@ -1,6 +1,6 @@
 async function fetchStudents() {
   try {
-    const response = await fetch('http://localhost:3000/etudiants');
+    const response = await fetch('https://etud.onrender.com/etudiants');
     const students = await response.json();
     displayStudents(students);
   } catch (error) {
@@ -42,7 +42,7 @@ document.getElementById('add-student-form').addEventListener('submit', async (e)
   };
 
   try {
-    const response = await fetch('http://localhost:3000/etudiants', {
+    const response = await fetch('https://etud.onrender.com/etudiants', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(studentData),

@@ -3,7 +3,7 @@ let isEditMode = false;
 // Fetch and display filières
 async function fetchFilieres() {
   try {
-    const response = await fetch('http://localhost:3000/filieres');
+    const response = await fetch('https://etud.onrender.com/filieres');
     const filieres = await response.json();
     renderFilieres(filieres);
   } catch (error) {
@@ -42,13 +42,13 @@ document.getElementById('filiere-form').addEventListener('submit', async (e) => 
   try {
     if (isEditMode) {
       const id = document.getElementById('filiere-id').value;
-      await fetch(`http://localhost:3000/filieres/${id}`, {
+      await fetch(`https://etud.onrender.com/filieres/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(filiereData)
       });
     } else {
-      await fetch('http://localhost:3000/filieres', {
+      await fetch('https://etud.onrender.com/filieres', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(filiereData)
@@ -65,7 +65,7 @@ document.getElementById('filiere-form').addEventListener('submit', async (e) => 
 // Edit filière
 async function editFiliere(id) {
   try {
-    const response = await fetch(`http://localhost:3000/filieres/${id}`);
+    const response = await fetch(`https://etud.onrender.com/filieres/${id}`);
     const filiere = await response.json();
     
     document.getElementById('filiere-id').value = filiere.idFil;
@@ -81,7 +81,7 @@ async function editFiliere(id) {
 async function deleteFiliere(id) {
   if (confirm("Êtes-vous sûr de vouloir supprimer cette filière ?")) {
     try {
-      await fetch(`http://localhost:3000/filieres/${id}`, {
+      await fetch(`https://etud.onrender.com/filieres/${id}`, {
         method: 'DELETE'
       });
       fetchFilieres();

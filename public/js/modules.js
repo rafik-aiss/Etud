@@ -5,7 +5,7 @@ let isEditMode = false;
 // Fetch and display modules
 async function fetchModules() {
   try {
-    const response = await fetch('http://localhost:3000/modules');
+    const response = await fetch('https://etud.onrender.com/modules');
     const modules = await response.json();
     renderModules(modules);
   } catch (error) {
@@ -35,7 +35,7 @@ function renderModules(modules) {
 }
 async function populateFilieresDropdown() {
   try {
-    const response = await fetch('http://localhost:3000/filieres');
+    const response = await fetch('https://etud.onrender.com/filieres');
     const filieres = await response.json();
     const dropdown = document.getElementById('filiereId');
     
@@ -60,7 +60,7 @@ document.getElementById('module-form').addEventListener('submit', async (e) => {
   };
 
   // Validate module name uniqueness
-  const existingModules = await fetch('http://localhost:3000/modules').then(res => res.json());
+  const existingModules = await fetch('https://etud.onrender.com/modules').then(res => res.json());
   const duplicate = existingModules.some(
     mod => mod.nom.toLowerCase() === moduleData.nom.toLowerCase() && mod.idMod !== parseInt(document.getElementById('module-id').value)
   );
@@ -73,13 +73,13 @@ document.getElementById('module-form').addEventListener('submit', async (e) => {
   try {
     if (isEditMode) {
       const id = document.getElementById('module-id').value;
-      await fetch(`http://localhost:3000/modules/${id}`, {
+      await fetch(`https://etud.onrender.com/modules/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(moduleData)
       });
     } else {
-      await fetch('http://localhost:3000/modules', {
+      await fetch('https://etud.onrender.com/modules', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(moduleData)
@@ -91,7 +91,7 @@ document.getElementById('module-form').addEventListener('submit', async (e) => {
 };
 
 // Validate uniqueness
-const existingFilieres = await fetch('http://localhost:3000/filieres').then(res => res.json());
+const existingFilieres = await fetch('https://etud.onrender.com/filieres').then(res => res.json());
 const duplicate = existingFilieres.some(
   fil => fil.nom.toLowerCase() === filiereData.nom.toLowerCase() && fil.idFil !== parseInt(document.getElementById('filiere-id').value)
 );
@@ -112,7 +112,7 @@ if (duplicate) {
 // Edit module
 async function editModule(id) {
   try {
-    const response = await fetch(`http://localhost:3000/modules/${id}`);
+    const response = await fetch(`https://etud.onrender.com/modules/${id}`);
     const module = await response.json();
     
     document.getElementById('module-id').value = module.idMod;
@@ -129,7 +129,7 @@ async function editModule(id) {
 async function deleteModule(id) {
   if (confirm("Êtes-vous sûr de vouloir supprimer ce module ?")) {
     try {
-      await fetch(`http://localhost:3000/modules/${id}`, {
+      await fetch(`https://etud.onrender.com/modules/${id}`, {
         method: 'DELETE'
       });
       fetchModules();

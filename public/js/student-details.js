@@ -6,11 +6,11 @@ const studentId = urlParams.get('id');
 async function loadStudentData() {
   try {
     // Fetch student info
-    const studentResponse = await fetch(`http://localhost:3000/etudiants/${studentId}`);
+    const studentResponse = await fetch(`https://etud.onrender.com/etudiants/${studentId}`);
     const student = await studentResponse.json();
 
     // Fetch grades
-    const gradesResponse = await fetch(`http://localhost:3000/etudiants/${studentId}/grades`);
+    const gradesResponse = await fetch(`https://etud.onrender.com/etudiants/${studentId}/grades`);
     const grades = await gradesResponse.json();
 
     // Display student info
