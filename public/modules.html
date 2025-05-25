@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des Modules</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Gestion des Modules</h1>
+    <a href="/" class="btn back-btn">Retour à l'accueil</a>
+
+    <!-- Add/Edit Form -->
+    <form id="module-form">
+      <input type="hidden" id="module-id">
+      <!-- Inside the form -->
+<div class="form-grid">
+  <input type="text" id="nom" placeholder="Nom du module" required>
+  <input type="number" id="coeff" placeholder="Coefficient" step="0.1" min="0" required>
+  <!-- Add a dropdown for filières -->
+  <select id="filiereId" required>
+    <option value="">Sélectionnez une filière</option>
+  </select>
+  <button type="submit" class="btn">Enregistrer</button>
+</div>
+    </form>
+
+    <!-- Modules Table -->
+    <div class="table-container">
+      <table id="modules-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Coefficient</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="/js/modules.js"></script>
+</body>
+</html>

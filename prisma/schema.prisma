@@ -1,0 +1,53 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Reads from .env file
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+model Etudiant {
+  idEtud  Int      @id @default(autoincrement())
+  nom     String
+  prenom  String
+  tel     String?  // Optional field (if some students don't have a phone)
+  email   String   @unique
+  adresse String?
+  idFil   Int
+  filiere Filiere  @relation(fields: [idFil], references: [idFil])
+  notes   Note[]
+}
+
+model Filiere {
+  idFil     Int              @id @default(autoincrement())
+  nom       String
+  etudiants Etudiant[]
+  modules   FiliereModule[]
+}
+
+model Module {
+  idMod    Int              @id @default(autoincrement())
+  nom      String
+  coeff    Float
+  filieres FiliereModule[]
+  notes    Note[]
+}
+
+model FiliereModule {
+  idFil Int
+  idMod Int
+  filiere Filiere @relation(fields: [idFil], references: [idFil])
+  module Module   @relation(fields: [idMod], references: [idMod])
+
+  @@id([idFil, idMod]) // Composite primary key
+}
+
+model Note {
+  idEtud Int
+  idMod  Int
+  note   Float
+  etudiant Etudiant @relation(fields: [idEtud], references: [idEtud])
+  module  Module    @relation(fields: [idMod], references: [idMod])
+
+  @@id([idEtud, idMod]) // Composite primary key
+}

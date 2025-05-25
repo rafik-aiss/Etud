@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des Étudiants</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Gestion des Étudiants</h1>
+    <a href="/" class="btn back-btn">Retour à l'accueil</a>
+    <br>
+
+    <!-- Add/Edit Form -->
+    <form id="student-form">
+      <input type="hidden" id="student-id">
+      <div class="form-grid">
+        <input type="text" id="nom" placeholder="Nom" required>
+        <input type="text" id="prenom" placeholder="Prénom" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="tel" placeholder="Téléphone">
+        <input type="text" id="adresse" placeholder="Adresse">
+        <select id="idFil" required>
+            <option value="">Sélectionnez une filière</option>
+        </select>
+        <button type="submit" class="btn">Enregistrer</button>
+      </div>
+    </form>
+
+    <!-- Students Table -->
+    <div class="table-container">
+      <table id="students-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Adresse</th>
+            <th>ID Filière</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="/js/etudiants.js"></script>
+</body>
+</html>
